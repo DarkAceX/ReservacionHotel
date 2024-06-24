@@ -14,7 +14,7 @@ class reservation_manager:
         self.date = datetime.datetime.today().strftime('%Y/%m/%d')
     
     def reserve_room(self):
-        con.execute("INSERT INTO Reservations(ID_RESERVE,NAME,EMAIL,PHONE,DNI,ROOM,DATE) VALUES(?,?,?,?,?,?)",(self.id,self.name,self.email,self.phone,self.dni,self.room,self.date))
+        con.execute("INSERT INTO Reservation(ID_RESERVE,NAME,EMAIL,PHONE,DNI,ROOM,DATE) VALUES(?,?,?,?,?,?,?)",(self.id,self.name,self.email,self.phone,self.dni,self.room,self.date))
         connect.commit()
         connect.close()
         time.sleep(2)
@@ -22,16 +22,16 @@ class reservation_manager:
         print("\tReservacion realizada con exito")
         print(f"Nombre:{self.name}\nCorreo Electronico:{self.email}\nNumero Telefonico:{self.phone}\nDni:{self.dni}\nRoom:{self.room}\nDate:{self.date}")
     
-    def delete_reservation(id):
-        con.execute("DELETE FROM Reservations WHERE ID_RESERVE=?",(id))
+    def delete_reservation(self,id):
+        con.execute("DELETE FROM Reservation WHERE ID_RESERVE=?",(id))
         connect.commit()
         connect.close()
         time.sleep(2)
         os.system("cls")
         print("\tReservacion eliminada con exito")
     
-    def update_reservation(id,name,email,phone,dni,room):
-        con.execute("UPDATE Reservations SET NAME=?,EMAIL=?,PHONE=?,DNI=?,ROOM=? WHERE ID_RESERVE=?",(name,email,phone,dni,room,id))
+    def update_reservation(self,id,name,email,phone,dni,room):
+        con.execute("UPDATE Reservation SET NAME=?,EMAIL=?,PHONE=?,DNI=?,ROOM=? WHERE ID_RESERVE=?",(name,email,phone,dni,room,id))
         connect.commit()
         connect.close()
         time.sleep(2)
@@ -39,8 +39,8 @@ class reservation_manager:
         print("\tReservacion actualizada con exito")
         print(f"Nombre:{name}\nCorreo Electronico:{email}\nNumero Telefonico:{phone}\nDni:{dni}\nRoom:{room}\nDate:{datetime.datetime.today().strftime('%Y/%m/%d')}")
     
-    def search_reservation(id):
-        con.execute("SELECT * FROM Reservations WHERE ID_RESERVE=?",(id))
+    def search_reservation(self,id):
+        con.execute("SELECT * FROM Reservation WHERE ID_RESERVE=?",(id))
         data = con.fetchall()
         for i in data:
             os.system("cls")
