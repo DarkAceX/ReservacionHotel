@@ -1,4 +1,4 @@
-# A reservacion_app Flet app
+# A app Flet app
 
 An example of a minimal Flet app.
 
